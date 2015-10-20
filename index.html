@@ -121,25 +121,33 @@
 <figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">localhost:</span><span class="number">4000</span></span><br></pre></td></tr></table></figure>
 <h2 id="記事を編集する">記事を編集する</h2><p><code>source/_posts</code>に元ネタのmdファイルがおいてあるので、hello-world.mdは削除しておく。</p>
 <p>新規で記事を作成する場合、直接mdファイルを作ってもOKだし、以下のコマンドで画像用フォルダを同時に作る方法でもOK。フォルダはmdファイル名と一緒になっていれば手で作ってもOK。</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo <span class="keyword">new</span> <span class="string">"this-is-my-first-post.md"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo <span class="keyword">new</span> <span class="string">"this-is-my-first-post"</span></span><br></pre></td></tr></table></figure>
 <p>長くてもいいので、なるべくわかりやすいファイル名にしておくのが良い。<br>短いと将来バッティングしてしまったりするので。</p>
-<p>ファイルの先頭にmeta情報を欠いておくことができる。</p>
+<p>エディタでファイルを開き、先頭にmeta情報を書いておくことができる。<br>コマンドで作った場合は途中まで自動で挿入されている。</p>
 <figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">title: hexoをつかってGithubページにブログを作る</span><br><span class="line">date: 2015-10-20 14:44:00</span><br><span class="line">tags:</span><br><span class="line"><span class="bullet">- </span>github</span><br><span class="line"><span class="bullet">- </span>hexo</span><br><span class="line"><span class="header">- install</span><br><span class="line">----</span></span><br></pre></td></tr></table></figure>
 <p>最低限、titleだけあればOK。</p>
 <p>画像を使う場合、ファイル名と同じ名前のフォルダに画像を格納しておく。<br>Markdown方式の画像表示は以下になるが、</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="link_label">すごい画像</span>](<span class="link_url">./path/of/image/asdf.png "すごい画像"</span>)</span><br></pre></td></tr></table></figure>
 <p>これではローカルサーバで表示されないので、専用のタグを使う。</p>
 <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="var_expand">% asset_img asdf.png すごい画像 %</span>&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="githubページにデプロイ">githubページにデプロイ</h2><p>以下のコマンドでgithubページにデプロイ(gitでpush)できる。</p>
+<p>上記専用タグだと、ローカルサーバでもデプロイ先でも問題なく画像が表示されるので便利。</p>
+<h2 id="githubページにデプロイ">githubページにデプロイ</h2><p>以下のコマンドでgithubページにデプロイ(gitでpush)する。</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo <span class="keyword">d</span> -<span class="keyword">g</span></span><br></pre></td></tr></table></figure>
 <p>オプションの<code>-g</code>はgenerateの略。mdファイルをhtmlにするという意味。</p>
-<p>そしてジェネレートされたhtmlを、_config.ymlに書いたリポジトリにデプロイするのが<code>d</code>、と言う意味になる。</p>
+<p>そしてジェネレートされたhtmlを、<code>_config.yml</code>に書いたリポジトリにデプロイするのが<code>d</code>、と言う意味になる。</p>
 <p>反映するのに少し時間がかかるので、何度もデプロイしないで、5分10分待ってから確認する。</p>
+<h2 id="テンプレートのデザインを変える">テンプレートのデザインを変える</h2><p>幾つかのテンプレートが用意されているが、ほとんどが中華製なので、テーマにある<code>_config.yml</code>が中国語だったりする。</p>
+<p>しかし、Google翻訳を使いながら、自分流にカスタマイズすれば問題ない。</p>
+<ol>
+<li><a href="http://js.romareas.net/demo/" target="_blank" rel="external">Githubのテーマ</a>から好きなリポジトリをcloneする</li>
+<li>テーマ内にある<code>_config.yml</code>を適宜編集する</li>
+</ol>
+<p>以上。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="s-ogawa-mediba.github.io/2015/10/20/install_hexo_mac/" data-id="cifz1pblw000084d2pr7lasvn" class="article-share-link">Share</a>
+      <a data-url="s-ogawa-mediba.github.io/2015/10/20/install_hexo_mac/" data-id="cifz2u4wj000507d25kmyohoz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/install/">install</a></li></ul>
@@ -190,7 +198,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="s-ogawa-mediba.github.io/2015/10/16/javascript-include-external-file/" data-id="cifz1pbmy000784d2l11rzvre" class="article-share-link">Share</a>
+      <a data-url="s-ogawa-mediba.github.io/2015/10/16/javascript-include-external-file/" data-id="cifz2u4vy000007d2ctvtcboo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mastache/">mastache</a></li></ul>
