@@ -61,6 +61,91 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-install_hexo_mac" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/20/install_hexo_mac/" class="article-date">
+  <time datetime="2015-10-20T05:44:00.000Z" itemprop="datePublished">2015-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/20/install_hexo_mac/">hexoをつかってGithubページにブログを作る</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>HEXOという静的ファイルジェネレータとGithubページが相性が良いので、HEXOでブログみたいなことをヤってみようと思う。</p>
+<h2 id="前提条件">前提条件</h2><ul>
+<li>PCはMac</li>
+<li>NodeJSインストール済み</li>
+<li>npmインストール済み</li>
+</ul>
+<h2 id="githubページを用意する">githubページを用意する</h2><p>githubにログインし、ヘッダの＋ボタンから、新規リポジトリを作成する。</p>
+<p>Repository nameには、URLになる名前を入力する。<br>必ず最後は<code>@github.io</code>にすること。</p>
+<p>例：myblog@github.io</p>
+<p>ただし、サブドメインと同じ扱いなので、すでに使われているものは使えない。</p>
+<p>HEXOでページを作るので、README.mdは自動生成させない。<br>つまり、<code>Initialize this repository with a README</code>はチェックしないでおく。</p>
+<h2 id="HEXOのインストール">HEXOのインストール</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="keyword">install</span> hexo</span><br></pre></td></tr></table></figure>
+<h2 id="初期設定">初期設定</h2><p>ブログ名を<code>myBlog</code>とする</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init myB<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<p>これでmyBlogというフォルダが作られて、中に一式準備される。<br>中に入って必要最低限のパッケージのインストールをする。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> myB<span class="built_in">log</span></span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<h2 id="プラグイン">プラグイン</h2><p>すこし便利に使いたいので、以下の2つのプラグインも入れておく。</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="keyword">install</span> hexo-deployer-git</span><br><span class="line">$ npm <span class="keyword">install</span> hexo-generator-feed</span><br></pre></td></tr></table></figure>
+<ul>
+<li>hexo-deployer-gitは、githubページヘ一発でデプロイしてくれるプラグイン</li>
+<li>hexo-generator-feedは、rssフィード(atom.xmlファイル)を自動生成してくれるプラグイン</li>
+</ul>
+<h2 id="コンフィグ">コンフィグ</h2><p>ブログのタイトル、作者などの設定は、<code>_config.yml</code>で行う。<br>エディタで開いて適宜編集しておく。</p>
+<p>画像を使う場合も想定して、以下の項目を<code>true</code>にしておく。<br><code>post_asset_folder: false</code><br>↓<br><code>post_asset_folder: true</code></p>
+<p>一番下に<code>deploy</code>という項目があるので、ここをgithubページのURLにしておく。</p>
+<p>例：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: git</span><br><span class="line">  <span class="attribute">repo</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:yamada/myblog.github.io.git</span><br><span class="line">  <span class="attribute">branch</span>: master</span><br></pre></td></tr></table></figure></p>
+<h2 id="ローカルサーバ">ローカルサーバ</h2><p>以下のコマンドでローカルサーバを起動する。</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo <span class="keyword">server</span></span><br></pre></td></tr></table></figure>
+<p>しばらくすると以下のメッセージが表示される。<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO  Hexo is running <span class="keyword">at</span> <span class="keyword">http</span>://<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">4000</span>/. Press Ctrl+C <span class="built_in">to</span> <span class="built_in">stop</span>.</span><br></pre></td></tr></table></figure></p>
+<p>ブラウザで以下のURLにアクセスすると、編集がリアルタイムで確認できる。</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">localhost:</span><span class="number">4000</span></span><br></pre></td></tr></table></figure>
+<h2 id="記事を編集する">記事を編集する</h2><p><code>source/_posts</code>に元ネタのmdファイルがおいてあるので、hello-world.mdは削除しておく。</p>
+<p>新規で記事を作成する場合、直接mdファイルを作ってもOKだし、以下のコマンドで画像用フォルダを同時に作る方法でもOK。フォルダはmdファイル名と一緒になっていれば手で作ってもOK。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo <span class="keyword">new</span> <span class="string">"this-is-my-first-post.md"</span></span><br></pre></td></tr></table></figure>
+<p>長くてもいいので、なるべくわかりやすいファイル名にしておくのが良い。<br>短いと将来バッティングしてしまったりするので。</p>
+<p>ファイルの先頭にmeta情報を欠いておくことができる。</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">title: hexoをつかってGithubページにブログを作る</span><br><span class="line">date: 2015-10-20 14:44:00</span><br><span class="line">tags:</span><br><span class="line"><span class="bullet">- </span>github</span><br><span class="line"><span class="bullet">- </span>hexo</span><br><span class="line"><span class="header">- install</span><br><span class="line">----</span></span><br></pre></td></tr></table></figure>
+<p>最低限、titleだけあればOK。</p>
+<p>画像を使う場合、ファイル名と同じ名前のフォルダに画像を格納しておく。<br>Markdown方式の画像表示は以下になるが、</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="link_label">すごい画像</span>](<span class="link_url">./path/of/image/asdf.png "すごい画像"</span>)</span><br></pre></td></tr></table></figure>
+<p>これではローカルサーバで表示されないので、専用のタグを使う。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="var_expand">% asset_img asdf.png すごい画像 %</span>&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="githubページにデプロイ">githubページにデプロイ</h2><p>以下のコマンドでgithubページにデプロイ(gitでpush)できる。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo <span class="keyword">d</span> -<span class="keyword">g</span></span><br></pre></td></tr></table></figure>
+<p>オプションの<code>-g</code>はgenerateの略。mdファイルをhtmlにするという意味。</p>
+<p>そしてジェネレートされたhtmlを、_config.ymlに書いたリポジトリにデプロイするのが<code>d</code>、と言う意味になる。</p>
+<p>反映するのに少し時間がかかるので、何度もデプロイしないで、5分10分待ってから確認する。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/10/20/install_hexo_mac/" data-id="cifyydoqw00007qd2hh39sig4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/install/">install</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-javascript-include-external-file" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/10/16/javascript-include-external-file/" class="article-date">
@@ -83,7 +168,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="JavaScriptでheaderとfooterを共通化しておく">JavaScriptでheaderとfooterを共通化しておく</h1><p>別にphpが使える環境ならphpでincludeすれば良い話なんだけど、せっかくなのでJavaScriptだけでやってみる。<br>基本的にjQueryでget()メソッドを使って非同期に読み込むだけ。<br>注意点としては、イテレート磨る際にクロージャにしておかないと、最後のテンプレートしか読み込まれない部分かな。<br>後は普通に読みこめば大丈夫。</p>
+        <p>別にphpが使える環境ならphpでincludeすれば良い話なんだけど、せっかくなのでJavaScriptだけでやってみる。<br>基本的にjQueryでget()メソッドを使って非同期に読み込むだけ。<br>注意点としては、イテレート磨る際にクロージャにしておかないと、最後のテンプレートしか読み込まれない部分かな。<br>後は普通に読みこめば大丈夫。</p>
 <h2 id="チャンク作成">チャンク作成</h2><p>テンプレートはMustacheを使ってみる。ロジックレスなので難しいことは考えずにサクッと実装。</p>
 <p><strong>header.html</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">h1</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h2</span>&gt;</span>&#123;&#123;subTitle&#125;&#125;<span class="tag">&lt;/<span class="title">h2</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>footer.html</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;year&#125;&#125; © N.F.L. co.,ltd.</span><br></pre></td></tr></table></figure></p>
@@ -100,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/16/javascript-include-external-file/" data-id="ciftikmi40000omd2tpvz6kbi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/10/16/javascript-include-external-file/" data-id="cifti33ea0000vsd2uavwu49l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mastache/">mastache</a></li></ul>
@@ -123,7 +208,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mastache/">mastache</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/install/">install</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mastache/">mastache</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -132,7 +217,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/mastache/" style="font-size: 10px;">mastache</a>
+      <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/install/" style="font-size: 10px;">install</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/mastache/" style="font-size: 10px;">mastache</a>
     </div>
   </div>
 
@@ -141,7 +226,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -151,6 +236,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/10/20/install_hexo_mac/">hexoをつかってGithubページにブログを作る</a>
+          </li>
         
           <li>
             <a href="/2015/10/16/javascript-include-external-file/">JavaScriptで共通の外部ファイルを読み込んでみる</a>
