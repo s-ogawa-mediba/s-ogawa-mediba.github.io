@@ -119,6 +119,8 @@
 <p>しばらくすると以下のメッセージが表示される。<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO  Hexo is running <span class="keyword">at</span> <span class="keyword">http</span>://<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">4000</span>/. Press Ctrl+C <span class="built_in">to</span> <span class="built_in">stop</span>.</span><br></pre></td></tr></table></figure></p>
 <p>ブラウザで以下のURLにアクセスすると、編集がリアルタイムで確認できる。</p>
 <figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">localhost:</span><span class="number">4000</span></span><br></pre></td></tr></table></figure>
+<p><code>_config.yml</code>は設定ファイルなので、編集したらローカルサーバを再起動しないといけない。<br>※設定ファイルってのはだいたいそんなもの(起動時にだけメモリに読み込まれる一方通行)。</p>
+<p>ローカルサーバを止めるのは、メッセージにある通り、<code>Ctrl+C</code>もしくは<code>cmd+.</code>でOK。</p>
 <h2 id="記事を編集する">記事を編集する</h2><p><code>source/_posts</code>に元ネタのmdファイルがおいてあるので、hello-world.mdは削除しておく。</p>
 <p>新規で記事を作成する場合、直接mdファイルを作ってもOKだし、以下のコマンドで画像用フォルダを同時に作る方法でもOK。フォルダはmdファイル名と一緒になっていれば手で作ってもOK。</p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo <span class="keyword">new</span> <span class="string">"this-is-my-first-post"</span></span><br></pre></td></tr></table></figure>
