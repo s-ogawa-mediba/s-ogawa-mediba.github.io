@@ -17,7 +17,7 @@ evaluate()で何か拾ってみるpageオブジェクトにwebpageを生成し�
 このevaluate()メソッドを使うと、該">
 <meta property="og:image" content="s-ogawa-mediba.github.io/2015/10/27/feel-that-i-want-use-phantomjs-2/qiita_logout.png">
 <meta property="og:image" content="s-ogawa-mediba.github.io/2015/10/27/feel-that-i-want-use-phantomjs-2/qiita_login.png">
-<meta property="og:updated_time" content="2015-10-27T09:34:25.000Z">
+<meta property="og:updated_time" content="2015-10-27T09:37:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PhantomJSを使ってみたい気がした[002]">
 <meta name="twitter:description" content="jQueryとか使えると便利なので、IncludeJSで読み込み、callback内でいろいろパラメータを取得したりしてみる感じ。
@@ -135,7 +135,8 @@ evaluate()で何か拾ってみるpageオブジェクトにwebpageを生成し�
 <p>PhantomJSをググルと、いわゆる「やってみた」系ブログがヒットする。でも残念ながら、<code>render()</code>メソッドでキャプチャを撮るだけの、<strong>一山なんぼの残りカス</strong> 的な <strong>ただのノイズ記事</strong> ばっかりヒットするので、最低限ここまではやってもらいたいよなぁ、とは思う(言いすぎなのは自覚あり)。</p>
 <p>さて、注意点として、<strong>evaluate()の世界観</strong> がある。</p>
 <p>このevaluate()のコールバック内で<code>console.log()</code>を叩いても、それは<code>QtWebkit</code>というヘッドレスブラウザの中で実行されるので、PhantomJSを実行してる環境で<code>console.log()</code>が実行されるわけではないということ。<br>当然、pageオブジェクトも中では拾えない。</p>
-<p>ここらへんのスコープは注意しておかないとマジでハマるんだよね。</p>
+<p>ここらへんのスコープは注意しておかないとマジでハマるんだよね。<br>あと<code>sleep()</code>がないのでいちいち<code>setTimeout()</code>させるのもかなりめんどくさいってのも有る。</p>
+<p>そのうち、<code>PhantomJS</code>を便利に使える用になると言われている<code>CasperJS</code>なんかも使ってみたいね。</p>
 
       
     </div>

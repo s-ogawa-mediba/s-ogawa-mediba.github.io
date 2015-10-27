@@ -128,7 +128,8 @@
 <p>PhantomJSをググルと、いわゆる「やってみた」系ブログがヒットする。でも残念ながら、<code>render()</code>メソッドでキャプチャを撮るだけの、<strong>一山なんぼの残りカス</strong> 的な <strong>ただのノイズ記事</strong> ばっかりヒットするので、最低限ここまではやってもらいたいよなぁ、とは思う(言いすぎなのは自覚あり)。</p>
 <p>さて、注意点として、<strong>evaluate()の世界観</strong> がある。</p>
 <p>このevaluate()のコールバック内で<code>console.log()</code>を叩いても、それは<code>QtWebkit</code>というヘッドレスブラウザの中で実行されるので、PhantomJSを実行してる環境で<code>console.log()</code>が実行されるわけではないということ。<br>当然、pageオブジェクトも中では拾えない。</p>
-<p>ここらへんのスコープは注意しておかないとマジでハマるんだよね。</p>
+<p>ここらへんのスコープは注意しておかないとマジでハマるんだよね。<br>あと<code>sleep()</code>がないのでいちいち<code>setTimeout()</code>させるのもかなりめんどくさいってのも有る。</p>
+<p>そのうち、<code>PhantomJS</code>を便利に使える用になると言われている<code>CasperJS</code>なんかも使ってみたいね。</p>
 
       
     </div>
